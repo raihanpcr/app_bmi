@@ -1,4 +1,5 @@
-import 'package:aplikasi_bmi/bmi_data_screen.dart';
+import 'package:aplikasi_bmi/constan/constant.dart';
+import 'package:aplikasi_bmi/views/bmi_data_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: Color(0xff0A0E21)
-            ),
+          primaryColor: primaryColor,
+          scaffoldBackgroundColor: primaryColor,
+          appBarTheme: AppBarTheme(backgroundColor: primaryColor),
           // This is the theme of your application.
           //
           // Try running your application with "flutter run". You'll see the
@@ -28,7 +29,6 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: BmiDataScreen()
-      );
-    }
+        home: BmiDataScreen());
+  }
 }
