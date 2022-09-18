@@ -13,6 +13,16 @@ class BmiDataScreen extends StatefulWidget {
 
 class _BmiDataScreenState extends State<BmiDataScreen> {
   int height = 100;
+  int weight = 50;
+  int age = 20;
+
+  double calculateBmi() {
+    double heightIntMeter = height / 100;
+    final bmi = weight / (heightIntMeter * heightIntMeter);
+    // final h = pow(height, 2);
+    // print(bmi);
+    return bmi;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +103,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                         style: labelTextStyle,
                       ),
                       Text(
-                        "60",
+                        "$weight",
                         style: numberTextStyle,
                       ),
                       SizedBox(height: 8),
@@ -101,7 +111,10 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           RawMaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              weight += 1;
+                              setState(() {});
+                            },
                             elevation: 0,
                             child: Icon(
                               Icons.add,
@@ -116,7 +129,11 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                           ),
                           SizedBox(width: 10),
                           RawMaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              weight -= 1;
+                              // print(weight);
+                              setState(() {});
+                            },
                             elevation: 0,
                             child: Icon(
                               Icons.remove,
@@ -145,7 +162,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                         style: labelTextStyle,
                       ),
                       Text(
-                        "20",
+                        "$age",
                         style: numberTextStyle,
                       ),
                       SizedBox(height: 8),
@@ -153,7 +170,10 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           RawMaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              age++;
+                              setState(() {});
+                            },
                             elevation: 0,
                             child: Icon(
                               Icons.add,
@@ -168,7 +188,10 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                           ),
                           SizedBox(width: 10),
                           RawMaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              age--;
+                              setState(() {});
+                            },
                             elevation: 0,
                             child: Icon(
                               Icons.remove,
@@ -191,10 +214,13 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
           ))),
           GestureDetector(
             onTap: () {
+              // print(calculateBmi());
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: ((context) {
-                    return const BmiResultScreen();
+                    return BmiResultScreen(
+                      bmi: calculateBmi(),
+                    );
                   }),
                 ),
               );
@@ -253,7 +279,11 @@ class GenderIconText extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, size: 80),
+        Icon(
+          icon,
+          size: 80,
+          color: Colors.white,
+        ),
         const SizedBox(height: 15),
         Text(
           title,
